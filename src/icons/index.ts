@@ -8,3 +8,4 @@ export * from './TikTokIcon';
 export * from './VRChatGroupIcon';
 export * from './VRChatWorldIcon';
 export * from './WebsiteIcon';
+export * from './GithubIcon';
