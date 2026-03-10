@@ -14,7 +14,11 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY!
 );
 
-export function BlogUpdates() {
+interface BlogUpdatesProps {
+  maxHeight?: number | null;
+}
+
+export function BlogUpdates({ maxHeight }: BlogUpdatesProps) {
   const [posts, setPosts] = React.useState<BlogPost[]>([]);
   const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set());
   const [showTooltip, setShowTooltip] = useState<string | null>(null);
@@ -154,12 +158,27 @@ export function BlogUpdates() {
   };
 
   return (
-    <div className="grid-card">
-      <h2 className="text-2xl font-bold mb-4 text-purple-300">Latest Updates</h2>
-      <div className="space-y-4">
-        {posts.map(post => (
-          <div key={post.id} className="p-4 rounded bg-purple-900/30 neon-border">
-            <p className="text-sm text-purple-400 mb-2">
+    <div
+      className="grid-card flex flex-col"
+      style={maxHeight ? { height: maxHeight } : undefined}
+    >
+      <h2 className="text-2xl font-bold mb-4 text-purple-300 shrink-0">Blog Update</h2>
+      <div className="scrollbar-styled space-y-4 overflow-y-auto min-h-0 flex-1 pr-1">
+        {posts.map((post, index) => (
+          <div
+            key={post.id}
+            className={`p-4 rounded relative overflow-hidden ${
+              index === 0
+                ? 'bg-gradient-to-br from-purple-900/50 via-amber-900/15 to-purple-900/40 border-2 border-amber-500/60 shadow-[0_0_20px_rgba(251,191,36,0.25),inset_0_1px_0_rgba(251,191,36,0.1)] ring-1 ring-amber-400/30 pl-5 border-l-4 border-l-amber-400'
+                : 'bg-purple-900/30 neon-border'
+            }`}
+          >
+            {index === 0 && (
+              <div className="absolute top-3 right-3 px-2 py-0.5 text-xs font-semibold text-amber-200 bg-amber-500/30 rounded-full border border-amber-400/40">
+                Latest
+              </div>
+            )}
+            <p className={`text-sm mb-2 ${index === 0 ? 'text-amber-200 font-medium' : 'text-purple-400'}`}>
               {new Date(post.created_at).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',

@@ -6,8 +6,9 @@ export function AboutMe() {
         <div>
           <h2 className="text-2xl font-bold mb-2 text-purple-300">About Me</h2>
           <p className="text-gray-300 mb-2">
-            Hey! I'm lolmaxz, a 32-year-old programmer passionate about VR and creating amazing experiences. When I'm not coding or
-            exploring virtual worlds, I'm working on exciting projects for our community.
+            Hey! I'm lolmaxz, a 32-year-old programmer passionate about VR and creating amazing experiences. I'm also a professional
+            Discord bot developer and I'm currently looking for commissioned work. When I'm not coding or exploring virtual worlds,
+            I'm working on exciting projects for our community.
           </p>
           <p className="text-purple-400">Discord: lolmaxz</p>
         </div>

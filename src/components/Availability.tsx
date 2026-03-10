@@ -21,10 +21,10 @@ export function Availability() {
     return format(date, 'h:mm a');
   };
 
-  const weekdayStart = convertToLocalTime(15); // 3 PM EST
-  const weekdayEnd = convertToLocalTime(1); // 1 AM EST
-  const weekendStart = convertToLocalTime(13); // 1 PM EST
-  const weekendEnd = convertToLocalTime(23); // 11 PM EST
+  const weekdayStart = convertToLocalTime(1); // 1 AM EST
+  const weekdayEnd = convertToLocalTime(14); // 2 PM EST
+  const saturdayStart = convertToLocalTime(9); // 9 AM EST
+  const saturdayEnd = convertToLocalTime(16); // 4 PM EST
 
   // Get timezone code
   const timezoneCode = new Date().toLocaleTimeString('en-us', { timeZoneName: 'short' }).split(' ')[2];
@@ -47,9 +47,9 @@ export function Availability() {
       {isExpanded && (
         <div className="grid-card">
           <ul className="space-y-2">
-            <li>Weekends: {weekendStart} - {weekendEnd} {timezoneCode}</li>
             <li>Weekdays: {weekdayStart} - {weekdayEnd} {timezoneCode}</li>
-            <li>Friday: Unavailable</li>
+            <li>Saturday: {saturdayStart} - {saturdayEnd} {timezoneCode}</li>
+            <li>Sunday: Unavailable</li>
           </ul>
         </div>
       )}

@@ -13,11 +13,23 @@ function App() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const quickLinksRef = useRef<HTMLDivElement>(null);
+  const [quickLinksHeight, setQuickLinksHeight] = useState<number | null>(null);
 
   useEffect(() => {
     if (import.meta.env.VITE_EMAILJS_PUBLIC_KEY) {
       emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
     }
+  }, []);
+
+  useEffect(() => {
+    const el = quickLinksRef.current;
+    if (!el) return;
+    const updateHeight = () => setQuickLinksHeight(el.offsetHeight);
+    updateHeight();
+    const ro = new ResizeObserver(updateHeight);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -76,8 +88,10 @@ function App() {
 
         {/* Main Grid Layout */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <QuickLinks />
-          <BlogUpdates />
+          <div ref={quickLinksRef}>
+            <QuickLinks />
+          </div>
+          <BlogUpdates maxHeight={quickLinksHeight} />
 
           {/* Current Projects */}
           <div className="grid-card">
@@ -86,8 +100,9 @@ function App() {
               <li>The Eden Apis Official VRChat World</li>
               <li>VRC-TS Library Development</li>
               <li>Re-organizing some Discord Channels</li>
-              <li>New VRChat World</li>
-              <li>New Staff Handbook</li>
+              <li className="line-through text-purple-500">New Staff Handbook ✓</li>
+              <li className="line-through text-purple-500">New Custom Discord Ticket Bot (Orion) ✓</li>
+              <li>Open commissions at the moment</li>
             </ul>
           </div>
 

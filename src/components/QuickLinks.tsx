@@ -1,8 +1,18 @@
-import { Code2, ExternalLink } from "lucide-react";
+import { BookOpen, Code2, ExternalLink, Ticket } from "lucide-react";
 import { DiscordIcon, GithubIcon, PatreonIcon, RedditIcon, VRChatGroupIcon, VRChatWorldIcon } from "../icons";
 
 export function QuickLinks() {
   const mainLinks = [
+    {
+      icon: <Ticket className="w-6 h-6 text-amber-400" />,
+      text: "Orion Custom Ticket Dashboard",
+      href: "https://orion.theedenapis.com",
+    },
+    {
+      icon: <BookOpen className="w-6 h-6 text-purple-400" />,
+      text: "Staff Handbook",
+      href: "https://theedenapis.com/staff-handbooks/docs/intro/",
+    },
     { icon: <DiscordIcon className="w-6 h-6" />, text: "Discord Server - Community", href: "https://discord.gg/theedenapis" },
     { icon: <VRChatGroupIcon className="w-6 h-6 text-purple-400" />, text: "VRChat Group", href: "https://vrc.group/TEA.5003" },
     {
