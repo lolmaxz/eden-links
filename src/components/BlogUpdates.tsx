@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Heart } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
 
 interface BlogPost {
   id: string;
@@ -8,11 +7,6 @@ interface BlogPost {
   created_at: string;
   likes: number;
 }
-
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL!,
-  import.meta.env.VITE_SUPABASE_ANON_KEY!
-);
 
 interface BlogUpdatesProps {
   maxHeight?: number | null;
@@ -49,15 +43,12 @@ export function BlogUpdates({ maxHeight }: BlogUpdatesProps) {
         throw new Error('Invalid IP address data received');
       }
 
-      const { data: likes } = await supabase
-        .from('post_likes')
-        .select('post_id')
-        .eq('ip_address', ipData.ip);
-
-      if (likes) {
-        const likedPostIds = new Set(likes.map(like => like.post_id));
-        setLikedPosts(likedPostIds);
+      const likesResponse = await fetch(`/api/likes?ip=${encodeURIComponent(ipData.ip)}`);
+      if (!likesResponse.ok) {
+        throw new Error('Failed to load likes');
       }
+      const likes = await likesResponse.json() as { post_id: string }[];
+      setLikedPosts(new Set(likes.map(like => like.post_id)));
     } catch (error) {
       console.error('Error checking liked posts:', error);
     }
@@ -65,16 +56,12 @@ export function BlogUpdates({ maxHeight }: BlogUpdatesProps) {
 
   const fetchPosts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error('Error fetching posts:', error);
+      const response = await fetch('/api/posts');
+      if (!response.ok) {
+        console.error('Error fetching posts:', response.status);
         return;
       }
-
+      const data = await response.json() as BlogPost[];
       setPosts(data || []);
     } catch (error) {
       console.error('Error fetching posts:', error);
@@ -112,38 +99,19 @@ export function BlogUpdates({ maxHeight }: BlogUpdatesProps) {
         throw new Error('Invalid IP address data received');
       }
 
-      // Check if user already liked this post
-      const { data: existingLike } = await supabase
-        .from('post_likes')
-        .select('*')
-        .eq('post_id', postId)
-        .eq('ip_address', ipData.ip)
-        .maybeSingle();
+      const likeResponse = await fetch(`/api/posts/${encodeURIComponent(postId)}/like`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ip: ipData.ip }),
+      });
 
-      if (existingLike) {
+      if (likeResponse.status === 409) {
         console.log('Already liked this post');
         return;
       }
 
-      // Insert new like
-      const { error: likeError } = await supabase
-        .from('post_likes')
-        .insert([
-          { post_id: postId, ip_address: ipData.ip }
-        ]);
-
-      if (likeError) {
-        console.error('Error adding like:', likeError);
-        return;
-      }
-
-      // Update post likes count
-      const { error: updateError } = await supabase.rpc('increment_likes', {
-        post_id: postId
-      });
-
-      if (updateError) {
-        console.error('Error updating likes count:', updateError);
+      if (!likeResponse.ok) {
+        console.error('Error adding like:', likeResponse.status);
         return;
       }
 
