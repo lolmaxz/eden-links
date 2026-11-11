@@ -15,6 +15,7 @@ FROM node:22-bookworm-slim
 WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/server ./server
+COPY --from=build /app/seed ./seed
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV DATA_DIR=/data

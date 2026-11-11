@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { createReadStream, existsSync, mkdirSync } from "node:fs";
+import { createReadStream, existsSync, mkdirSync, readFileSync } from "node:fs";
 import { createServer } from "node:http";
 import path from "node:path";
 import { DatabaseSync } from "node:sqlite";
@@ -32,7 +32,24 @@ db.exec(`
 `);
 
 const postCount = db.prepare("SELECT COUNT(*) AS n FROM blog_posts").get().n;
-if (postCount === 0) {
+const seedPath = path.join(root, "seed", "blog.json");
+if (postCount === 0 && existsSync(seedPath)) {
+  const seed = JSON.parse(readFileSync(seedPath, "utf8"));
+  db.exec("BEGIN");
+  const insertPost = db.prepare(
+    "INSERT INTO blog_posts (id, content, created_at, likes) VALUES (?, ?, ?, ?)"
+  );
+  const insertLike = db.prepare(
+    "INSERT INTO post_likes (post_id, ip_address, created_at) VALUES (?, ?, ?)"
+  );
+  for (const post of seed.posts) {
+    insertPost.run(post.id, post.content, post.created_at, post.likes);
+  }
+  for (const like of seed.likes) {
+    insertLike.run(like.post_id, like.ip_address, like.created_at);
+  }
+  db.exec("COMMIT");
+} else if (postCount === 0) {
   db.prepare("INSERT INTO blog_posts (id, content, likes) VALUES (?, ?, 0)").run(
     randomUUID(),
     "Welcome to The Eden Apis! We just launched our new information website."

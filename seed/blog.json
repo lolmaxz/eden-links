@@ -1,0 +1,113 @@
+{
+  "posts": [
+    {
+      "id": "02e4f034-cf10-452e-b5c1-3f9e063f05db",
+      "content": "Just finished programming a whole Discord Ticket bot customized for our community. Complete with custom permission system, web dashboard to manage them and moderation tools built in as well to help the staff get the job done more easily. This work took me a total of 3 months.",
+      "created_at": "2020-03-03T00:00:00.000Z",
+      "likes": 0
+    },
+    {
+      "id": "2f4c133d-8fa0-4f11-a577-490e91c064da",
+      "content": "I have now fully launched the Discord bot commission! Either you need special designed commands, systems, API integration/web scraping or databases, or even a full dashboard web app for your community, we can work together to bring to life the tools you need!",
+      "created_at": "2020-03-03T10:40:43.359947Z",
+      "likes": 1
+    },
+    {
+      "id": "4f10d0e0-7dd8-4fa1-b7a7-3310e47f4c1d",
+      "content": "World making is now put on pause as I dedicate a bit of time on commissions so you know money isn't always coming by quickly. On the side working on the Discord server time to time.",
+      "created_at": "2020-03-03T10:43:10.553339Z",
+      "likes": 0
+    },
+    {
+      "id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "content": "Currently working hard on world-making. The Eden World is coming along nicely. There is so much new stuff I can't wait to show off! New UIs, New rooms, new Games, new Posters and so much more! So hyped!",
+      "created_at": "2025-08-13T23:07:18.793342Z",
+      "likes": 6
+    },
+    {
+      "id": "0bda1778-7fc1-4f81-8ea0-a9a0c0d0c01a",
+      "content": "Welcome to The Eden Apis! We just launched our new information website.",
+      "created_at": "2025-11-11T07:00:24.000Z",
+      "likes": 0
+    },
+    {
+      "id": "b99b1d48-d36e-4a9b-8f1d-fe8ca8b44fa3",
+      "content": "After creating a complete staff handbook using documentation library, it's now online on our main website!",
+      "created_at": "2025-08-18T01:38:18.586186Z",
+      "likes": 5
+    },
+    {
+      "id": "c3d5bd48-caed-4db0-8e99-09d8aad0f397",
+      "content": "Currently looking for small jobs, discord bot, website full stack, etc. Contact me with the form below!",
+      "created_at": "2025-10-24T22:05:24.000Z",
+      "likes": 1
+    }
+  ],
+  "likes": [
+    {
+      "post_id": "2f4c133d-8fa0-4f11-a577-490e91c064da",
+      "ip_address": "99.217.217.153",
+      "created_at": "2026-04-01T05:11:38.152296Z"
+    },
+    {
+      "post_id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "ip_address": "154.21.249.71",
+      "created_at": "2025-06-18T20:35:00.602606Z"
+    },
+    {
+      "post_id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "ip_address": "185.220.101.23",
+      "created_at": "2025-06-18T20:36:57.290476Z"
+    },
+    {
+      "post_id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "ip_address": "192.226.253.46",
+      "created_at": "2025-08-01T21:47:26.72151Z"
+    },
+    {
+      "post_id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "ip_address": "217.142.31.195",
+      "created_at": "2025-06-14T07:24:46.581994Z"
+    },
+    {
+      "post_id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "ip_address": "68.103.104.249",
+      "created_at": "2025-06-14T20:01:36.71617Z"
+    },
+    {
+      "post_id": "6f0d0622-1568-45d7-ba79-33904179c01e",
+      "ip_address": "74.214.236.79",
+      "created_at": "2025-06-14T02:58:03.935632Z"
+    },
+    {
+      "post_id": "b99b1d48-d36e-4a9b-8f1d-fe8ca8b44fa3",
+      "ip_address": "154.21.249.71",
+      "created_at": "2025-06-18T20:34:59.220722Z"
+    },
+    {
+      "post_id": "b99b1d48-d36e-4a9b-8f1d-fe8ca8b44fa3",
+      "ip_address": "185.220.101.23",
+      "created_at": "2025-06-18T20:37:06.249528Z"
+    },
+    {
+      "post_id": "b99b1d48-d36e-4a9b-8f1d-fe8ca8b44fa3",
+      "ip_address": "192.226.253.46",
+      "created_at": "2025-06-06T01:31:13.202139Z"
+    },
+    {
+      "post_id": "b99b1d48-d36e-4a9b-8f1d-fe8ca8b44fa3",
+      "ip_address": "68.103.104.249",
+      "created_at": "2025-06-14T20:01:38.268722Z"
+    },
+    {
+      "post_id": "b99b1d48-d36e-4a9b-8f1d-fe8ca8b44fa3",
+      "ip_address": "74.214.236.79",
+      "created_at": "2025-06-14T02:58:06.599128Z"
+    },
+    {
+      "post_id": "c3d5bd48-caed-4db0-8e99-09d8aad0f397",
+      "ip_address": "77.111.246.50",
+      "created_at": "2025-11-07T07:46:03.551935Z"
+    }
+  ]
+}
